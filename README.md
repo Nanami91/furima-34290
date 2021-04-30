@@ -16,52 +16,50 @@
 ### Association
 
 - has_many :item
-- has_one :credit-card
+- has_many :item_purchase
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| item_name       | string     | null: false                    |
-| description     | text       | null: false                    |
-| category        | integer    | null: false                    |
-| status          | integer    | null: false                    |
-| shipping_charge | integer    | null: false                    |
-| shipping_area   | integer    | null: false                    |
-| shipping_days   | integer    | null: false                    |
-| price           | integer    | null: false                    |
-| user            | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item_name          | string     | null: false                    |
+| description        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| shipping_charge_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| shipping_days_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- has_many :item_purchase
 
 ## address テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| post_code       | integer    | null: false                    |
-| prefectures     | string     | null: false                    |
+| post_code       | string     | null: false                    |
+| prefecture_id   | string     | null: false                    |
 | city            | string     | null: false                    |
 | home_number     | integer    | null: false                    |
-| building_name   | text       | null: false                    |
-| phone_number    | integer    | null: false                    |
-| user_id         | references | null: false, foreign_key: true |
-| item_id         | references | null: false, foreign_key: true |
+| building_name   | string     |                                |
+| phone_number    | string     | null: false                    |
 
 ### Association
 
-- belongs_to :user
+- belongs_to :item_purchase
 
 ## item_purchases テーブル
 | Column        | Type    | Options                        |
 | ------------- | ------- | ------------------------------ |
 | item          | integer | null: false, foreign_key: true |
 | user          | integer | null: false, foreign_key: true |
-| address       | integer | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
