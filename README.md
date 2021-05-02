@@ -37,7 +37,7 @@
 - belongs_to :user
 - has_one :item_purchase
 
-## address テーブル
+## addresses テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
@@ -47,16 +47,17 @@
 | home_number     | string     | null: false                    |
 | building_name   | string     |                                |
 | phone_number    | string     | null: false                    |
+| item_purchase   | references | null: false                    |
 
 ### Association
 
 - belongs_to :item_purchase
 
 ## item_purchases テーブル
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| item          | integer | null: false, foreign_key: true |
-| user          | integer | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| item          | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 
