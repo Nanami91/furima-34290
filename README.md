@@ -47,7 +47,7 @@
 | home_number     | string     | null: false                    |
 | building_name   | string     |                                |
 | phone_number    | string     | null: false                    |
-| item_purchase   | references | null: false                    |
+| item_purchase   | references | null: false, foreign_key: true |
 
 ### Association
 
