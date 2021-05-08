@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'aaa000'
         expect(@user).to be_valid
       end
-      it 'passwordとpassword_confirmationが同じであれば登録できる' do
+      it 'パスワードとパスワード（確認用）は、値の一致が必須であること' do
         @user.password = @user.password_confirmation
         expect(@user).to be_valid
       end
@@ -108,6 +108,18 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana Full-width katakana characters")
       end
+
+      it "フリガナ(名字)はカタカナ以外の全角文字だと登録できないこと" do
+        @user.last_name_kana = "かな"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana Full-width katakana characters")
+      end
+      it "フリガナ(名前)はカタカナ以外の全角文字だと登録できないこと" do
+        @user.first_name_kana = "かな"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana Full-width katakana characters")
+      end
+
       it '生年月日が空では登録できない' do
         @user.birth_date = nil
         @user.valid?
