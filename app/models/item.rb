@@ -7,12 +7,15 @@ class Item < ApplicationRecord
 
     validates :item_name
     validates :description
-    validates :category_id
-    validates :status_id
-    validates :shipping_charge_id
-    validates :prefecture_id
-    validates :shipping_days_id
     validates :price
+
+    with_options numericality: { other_than: 1 } do
+      validates :category_id
+      validates :status_id
+      validates :shipping_charge_id
+      validates :prefecture_id
+      validates :shipping_days_id
+    end
 
     validates :image, unless: :was_attached?
     def was_attached?
@@ -20,4 +23,11 @@ class Item < ApplicationRecord
     end
 
   end
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :status
+  belongs_to :shipping_charge
+  belongs_to :prefecture
+  belongs_to :shipping_days
 end
