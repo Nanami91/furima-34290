@@ -8,6 +8,7 @@ class Item < ApplicationRecord
     validates :item_name
     validates :description
     validates :price
+    validates :image
 
     with_options numericality: { other_than: 1 } do
       validates :category_id
@@ -16,12 +17,6 @@ class Item < ApplicationRecord
       validates :prefecture_id
       validates :shipping_days_id
     end
-
-    validates :image, unless: :was_attached?
-    def was_attached?
-     self.image.attached?
-    end
-
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -30,4 +25,5 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :prefecture
   belongs_to :shipping_days
+
 end
