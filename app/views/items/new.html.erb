@@ -48,7 +48,6 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%# 質問なんですが、カテゴリー選択類のrbファイルをまとめたいんですが、呼び出し方がわからずまだまとめていません。教えていただければ幸いです！ %>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態

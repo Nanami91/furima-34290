@@ -108,7 +108,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana Full-width katakana characters")
       end
-
       it "フリガナ(名字)はカタカナ以外の全角文字だと登録できないこと" do
         @user.last_name_kana = "かな"
         @user.valid?
@@ -119,7 +118,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana Full-width katakana characters")
       end
-
       it '生年月日が空では登録できない' do
         @user.birth_date = nil
         @user.valid?
@@ -133,8 +131,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
-半角英数混合では登録できないこと
-・半角英語だけでは登録できないこと
-・299円以下では登録できないこと
-・10,000,000以上では登録できないこと
