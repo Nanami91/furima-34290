@@ -6,7 +6,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品機能' do
-    
+
     context '商品を出品できるとき' do
       it '全ての値が正しく入力されていれば出品できること' do
         expect(@item).to be_valid
@@ -64,12 +64,31 @@ RSpec.describe Item, type: :model do
         @item.valid? 
         expect(@item.errors.full_messages).to include("Price Input half-width characters")
       end
+      it '値段が半角英数混合では出品できない' do
+        @item.price = "11aa"
+        @item.valid? 
+        expect(@item.errors.full_messages).to include("Price Input half-width characters")
+      end
+      it '値段が半角英語だけでは出品できない' do
+        @item.price = "aaaa"
+        @item.valid? 
+        expect(@item.errors.full_messages).to include("Price Input half-width characters")
+      end
+      it '値段が299円以下では出品できない' do
+        @item.price = "299"
+        @item.valid? 
+        expect(@item.errors.full_messages).to include("Price out of setting range")
+      end
+      it '値段が10,000,000以上ではでは出品できない' do
+        @item.price = "10000000"
+        @item.valid? 
+        expect(@item.errors.full_messages).to include("Price out of setting range")
+      end
       it 'ユーザーが紐付いていなければ出品できない' do
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("User must exist")
       end
-
 
     end
   end
