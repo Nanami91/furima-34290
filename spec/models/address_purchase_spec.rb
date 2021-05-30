@@ -42,17 +42,17 @@ RSpec.describe AddressPurchase, type: :model do
       expect(@address_purchase.errors.full_messages).to include("Phone number can't be blank")
     end
 
-    it '郵便番号がハイフンなしでは保存できないこと' do
+    it 'post_codeがハイフンなしでは保存できないこと' do
       @address_purchase.post_code = '1111111'
       @address_purchase.valid?
       expect(@address_purchase.errors.full_messages).to include("Post code is invalid. Enter it as follows (e.g. 123-4567)")
     end
-    it '電話番号が12桁以上では保存できないこと' do
+    it 'phone_numberが12桁以上では保存できないこと' do
       @address_purchase.phone_number = '090123456789'
       @address_purchase.valid?
       expect(@address_purchase.errors.full_messages).to include("Phone number is too long")
     end
-    it '電話番号が英数混合では保存できないこと' do
+    it 'phone_numberが英数混合では保存できないこと' do
       @address_purchase.phone_number = '090abcd1234'
       @address_purchase.valid?
       expect(@address_purchase.errors.full_messages).to include("Phone number Input half-width characters")
