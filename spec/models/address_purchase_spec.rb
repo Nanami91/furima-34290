@@ -40,11 +40,6 @@ RSpec.describe AddressPurchase, type: :model do
   end
   
   context '内容に問題がある場合' do
-    it "priceが空では保存ができないこと" do
-      @address_purchase.price = nil
-      @address_purchase.valid?
-      expect(@address_purchase.errors.full_messages).to include("Price can't be blank")
-    end
   
     it "tokenが空では登録できないこと" do
       @address_purchase.token = nil
