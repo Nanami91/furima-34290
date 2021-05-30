@@ -3,12 +3,10 @@ class ItemPurchasesController < ItemsController
   before_action :move_to_index, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @address_purchase = AddressPurchase.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @address_purchase = AddressPurchase.new(purchase_params)
     if @address_purchase.valid?
       pay_item

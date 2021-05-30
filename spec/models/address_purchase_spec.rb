@@ -9,6 +9,10 @@ RSpec.describe AddressPurchase, type: :model do
     it "すべての値が正しく入力されていれば保存できること" do
       expect(@address_purchase).to be_valid
     end
+    it 'building_nameは空でも保存できること' do
+      @address_purchase.building_name = ''
+      expect(@address_purchase).to be_valid
+    end
   end
 
   context '住所を登録できないとき' do
@@ -37,7 +41,24 @@ RSpec.describe AddressPurchase, type: :model do
       @address_purchase.valid?
       expect(@address_purchase.errors.full_messages).to include("Phone number can't be blank")
     end
+
+    it '郵便番号がハイフンなしでは保存できないこと' do
+      @address_purchase.post_code = '1111111'
+      @address_purchase.valid?
+      expect(@address_purchase.errors.full_messages).to include("Post code is invalid. Enter it as follows (e.g. 123-4567)")
+    end
+    it '電話番号が12桁以上では保存できないこと' do
+      @address_purchase.phone_number = '090123456789'
+      @address_purchase.valid?
+      expect(@address_purchase.errors.full_messages).to include("Phone number is too long")
+    end
+    it '電話番号が英数混合では保存できないこと' do
+      @address_purchase.phone_number = '090abcd1234'
+      @address_purchase.valid?
+      expect(@address_purchase.errors.full_messages).to include("Phone number Input half-width characters")
+    end
   end
+
   
   context '内容に問題がある場合' do
   
@@ -45,6 +66,16 @@ RSpec.describe AddressPurchase, type: :model do
       @address_purchase.token = nil
       @address_purchase.valid?
       expect(@address_purchase.errors.full_messages).to include("Token can't be blank")
+    end
+    it 'user_idが空では保存できないこと' do
+      @address_purchase.user_id = ''
+      @address_purchase.valid?
+      expect(@address_purchase.errors.full_messages).to include("User can't be blank")
+    end
+    it 'item_idが空では保存できないこと' do
+      @address_purchase.item_id = ''
+      @address_purchase.valid?
+      expect(@address_purchase.errors.full_messages).to include("Item can't be blank")
     end
   end
 end
