@@ -1,0 +1,45 @@
+<%= render "shared/header" %>
+<div class="user-show">
+  <div class="user-box">
+    <div class="user__wrapper">
+      <h2 class="name">
+      <h2 class="name">
+        <%= "#{@user.nickname}さんの商品"%>
+      </h2>
+
+    <ul class='user-item-lists'>
+      <div class="user__card">
+        <% @items.each do |item| %>
+      <li class='list'>
+        <%= link_to item_path(item.id), method: :get do %>
+        <div class='item-img-content'>
+          <%= image_tag item.image, class: "item-img" %>
+
+          <% if item.item_purchase.present? %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% end %>
+
+        </div>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            <%= item.item_name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.price %>円<br><%= item.shipping_charge.name %></span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+        <% end %>
+      </div>
+    </ul>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer" %>
