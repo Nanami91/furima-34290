@@ -156,11 +156,19 @@
   resize: none;
 }
 
+
+.field {
+  width: 40vw;
+  margin-top: 30px;
+  text-align: center;
+}
+
+
 .comment-warn {
   padding: 10px;
   font-size: 14px;
   margin: 10px 0px;
-  text-align: left;
+  text-align: center;
 }
 
 .comment-btn {
@@ -168,7 +176,7 @@
   background-color: #3CCACE;
   border: 1px solid #3CCACE;
   color: #fff;
-  width: 50%;
+  width: 40%;
   min-width: 150px;
   font-size: 18px;
   border-radius: 100px;
@@ -184,11 +192,60 @@
   margin: 10px 5px 0 0;
 }
 
+.comments_lists {
+  background-color: #dedede;
+  width: 40vw;
+  margin-bottom: 5vh;
+}
+
+.comments_list{
+  list-style-type: square;
+  padding-bottom: 5px;
+  list-style: none;
+  width: 30vw;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comments_list p {
+  border: solid 1px black;
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: #FFF;
+}
+
+.comment_user {
+  color: black;
+  padding-left: 10px;
+  margin-bottom: 40px;
+}
+
+
+.comment-index {
+  line-height: 48px;
+  background-color: #08cad1;
+  border: 1px solid #08cad1;
+  color: #fff;
+  width: 40%;
+  min-width: 150px;
+  font-size: 18px;
+  border-radius: 100px;
+  margin: 2vh 12vw;
+  padding-left: 55px;
+}
+
+.btn_destroy {
+  background-color: black;
+  color: white;
+  float: right;
+}
+
 .links {
   display: flex;
   justify-content: space-between;
   width: 50vw;
-
 }
 
 .change-item-btn {

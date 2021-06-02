@@ -82,19 +82,36 @@
   <%# /商品の概要 %>
 
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
+    <% if user_signed_in?%>
+    <%= form_with(model: [@item, @comment], local: true) do |f| %>
+      <div class="field">
+      <%= f.text_area :text, :size=>"60x5"%>
+      </div>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+        <%= f.submit "コメントする", class: "comment-btn" %>
+        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"35",height:"40"%>
+    <% end %>
+    <% end %>
   </div>
+
+  <ul class="comments_lists">
+    <p class="comment-index">コメント一覧</p>
+    <li class="comments_list">
+      <% @item.comments.each do |comment| %>
+          <p>
+          <%= link_to comment.text + "(#{comment.user.nickname})", "/users/#{comment.user.id}", class: :comment_user %>
+        <% if current_user == comment.user %>
+            <%= link_to '削除', item_comment_path(@item, comment), method: :delete, class:"btn_destroy" , data: { confirm: "削除しますか？" } %>
+          </p>
+        <% end %>
+      <% end %> 
+    </li>
+  </ul>
+
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品

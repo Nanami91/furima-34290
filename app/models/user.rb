@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :item_purchases
+  has_many :comments
 
 
   validates :password, format: {with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}\z/, message: "Include both letters and numbers" }
