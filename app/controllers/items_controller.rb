@@ -26,6 +26,12 @@ class ItemsController < ApplicationController
     @comments = @item.comments.includes(:user)
   end
 
+  def search
+    @items = Item.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "_search"
+  end
+
   def edit
   end
 
