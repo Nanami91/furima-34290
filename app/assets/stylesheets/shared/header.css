@@ -20,16 +20,15 @@
   margin-right: 10vw;
 }
 
+
 .search-form {
-  width: 65vw;
   height: 5vh;
   display: flex;
   margin-bottom: 5px;
 }
 
 .search-form>.input-box {
-  width: 100%;
-  height: 5vh;
+  width: 45vw;
   padding-left: 10px;
 }
 
@@ -41,9 +40,15 @@
   padding: 8px;
 }
 
+.search-hide {
+  display: none;
+}
+
 .search-icon {
   width: 100%;
 }
+
+
 
 .nav {
   font-size: 18px;
