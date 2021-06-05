@@ -5,6 +5,10 @@ class Item < ApplicationRecord
   has_many :comments
   has_one_attached :image
 
+  def self.search(search)
+    where(["item_name like? OR description like?", "%#{search}%", "%#{search}%"])
+  end
+
   with_options presence: true do
 
     validates :image
